@@ -12,7 +12,7 @@ app.use(express.json());
 
 const server = http.createServer(app); // Assurez-vous que 'server' est défini
 
-const io = socketIO(server); /
+const io = socket(server); /
 
 mongoose.connect('mongodb+srv://heartads715:iRSqo1zU4qtLZzDo@cluster0.nbkyqow.mongodb.net/?retryWrites=true&w=majority',
 {useNewUrlParser: true, 
