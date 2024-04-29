@@ -10,6 +10,9 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
+const server = http.createServer(app); // Assurez-vous que 'server' est défini
+
+const io = socketIO(server); /
 
 mongoose.connect('mongodb+srv://heartads715:iRSqo1zU4qtLZzDo@cluster0.nbkyqow.mongodb.net/?retryWrites=true&w=majority',
 {useNewUrlParser: true, 
@@ -21,12 +24,12 @@ app.use("/api/messages", messageRoutes);
 
 const port = process.env.PORT || 5900;
 app.listen(port,()=>console.log(`Server listen on the port ${port}`)) ;
-const io = socket(server, {
-  cors: {
-    origin: "https://backendchat-er7b.onrender.com",
-    credentials: true,
-  },
-});
+// const io = socket(server, {
+//   cors: {
+//     origin: "https://backendchat-er7b.onrender.com",
+//     credentials: true,
+//   },
+// });
 
 global.onlineUsers = new Map();
 io.on("connection", (socket) => {
