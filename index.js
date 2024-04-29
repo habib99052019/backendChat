@@ -10,17 +10,11 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
-mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB Connetion Successfull");
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+
+mongoose.connect('mongodb+srv://heartads715:iRSqo1zU4qtLZzDo@cluster0.nbkyqow.mongodb.net/?retryWrites=true&w=majority',
+{useNewUrlParser: true, 
+useUnifiedTopology: true,
+}).then(()=>console.log('Successfully connected to database.')).catch((e)=>console.error('Error in connection',e));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
