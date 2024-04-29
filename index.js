@@ -11,6 +11,10 @@ app.use(cors());
 app.use(express.json());
 
 
+const app1 = require('express')();
+const server = require('http').createServer(app1);
+const io = require('socket.io')(server);
+
 
 mongoose.connect('mongodb+srv://heartads715:iRSqo1zU4qtLZzDo@cluster0.nbkyqow.mongodb.net/?retryWrites=true&w=majority',
 {useNewUrlParser: true, 
@@ -19,15 +23,16 @@ useUnifiedTopology: true,
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
-
+server.listen(port);
 const port = process.env.PORT || 5900;
 app.listen(port,()=>console.log(`Server listen on the port ${port}`)) ;
-const io = socket(server, {
-  cors: {
-    origin: "https://backendchat-er7b.onrender.com",
-    credentials: true,
-  },
-});
+// const io = socket(server, {
+//   cors: {
+//     origin: "https://backendchat-er7b.onrender.com",
+//     credentials: true,
+//   },
+// });
+
 
 global.onlineUsers = new Map();
 io.on("connection", (socket) => {
