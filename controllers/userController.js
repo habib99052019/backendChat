@@ -52,6 +52,14 @@ module.exports.getAllUsers = async (req, res, next) => {
     next(ex);
   }
 };
+module.exports.all = async (req, res, next) => {
+  try {
+    const users = await User.find()
+    return res.json(users);
+  } catch (ex) {
+    next(ex);
+  }
+};
 
 module.exports.setAvatar = async (req, res, next) => {
   try {
