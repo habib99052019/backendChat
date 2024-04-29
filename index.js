@@ -23,7 +23,7 @@ const port = process.env.PORT || 5900;
 app.listen(port,()=>console.log(`Server listen on the port ${port}`)) ;
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:5900",
+    origin: "https://backendchat-er7b.onrender.com",
     credentials: true,
   },
 });
